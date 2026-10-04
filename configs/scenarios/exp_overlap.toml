@@ -1,0 +1,16 @@
+# Experiment base: overlapping-path acceptance scenario (SC-02 / PR-02).  Orders go from the west pickup stations
+# to the east drop stations, so every route shares the three cross aisles and the vertical connectors.
+[run]
+name = "exp_overlap"
+seed = 1
+duration = 1200.0
+port_base = 8000
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+count = 12
+rate = 0.25
+dwell = 2.0

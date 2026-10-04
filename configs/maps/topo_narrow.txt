@@ -1,0 +1,10 @@
+; topology "narrow aisle": three long single-lane aisles joined only at the west and east ends
+######C#C####
+#P.........D#
+#.#########.#
+#.#########.#
+#P0...1...2D#
+#.#########.#
+#.#########.#
+#P.........D#
+###R#####R###

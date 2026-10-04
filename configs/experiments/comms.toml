@@ -1,0 +1,45 @@
+# Experiment matrix: communication degradation (SC-04, acceptance item 6).  Distributed A* + PIBT, N = 3,
+# one-way latency {0, 10, 50, 100} ms x packet loss {0, 10, 20} %, 10 seeds each.  Delays are in sim time and
+# quantized to the 50 ms control tick (so 0 and 10 ms both deliver on the next tick).
+[campaign]
+name = "comms"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parallel = 4
+
+[[condition]]
+label = "lat0_loss0"
+set = { "comms.latency" = 0.0, "comms.loss" = 0.0 }
+[[condition]]
+label = "lat0_loss10"
+set = { "comms.latency" = 0.0, "comms.loss" = 0.1 }
+[[condition]]
+label = "lat0_loss20"
+set = { "comms.latency" = 0.0, "comms.loss" = 0.2 }
+[[condition]]
+label = "lat10_loss0"
+set = { "comms.latency" = 0.01, "comms.loss" = 0.0 }
+[[condition]]
+label = "lat10_loss10"
+set = { "comms.latency" = 0.01, "comms.loss" = 0.1 }
+[[condition]]
+label = "lat10_loss20"
+set = { "comms.latency" = 0.01, "comms.loss" = 0.2 }
+[[condition]]
+label = "lat50_loss0"
+set = { "comms.latency" = 0.05, "comms.loss" = 0.0 }
+[[condition]]
+label = "lat50_loss10"
+set = { "comms.latency" = 0.05, "comms.loss" = 0.1 }
+[[condition]]
+label = "lat50_loss20"
+set = { "comms.latency" = 0.05, "comms.loss" = 0.2 }
+[[condition]]
+label = "lat100_loss0"
+set = { "comms.latency" = 0.1, "comms.loss" = 0.0 }
+[[condition]]
+label = "lat100_loss10"
+set = { "comms.latency" = 0.1, "comms.loss" = 0.1 }
+[[condition]]
+label = "lat100_loss20"
+set = { "comms.latency" = 0.1, "comms.loss" = 0.2 }

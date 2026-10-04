@@ -1,0 +1,19 @@
+# FR-09 via blockage: the pickup station of an assigned order is blocked before the robot arrives.  The holder must
+# release the order (infeasible goal); nobody may bid while it is blocked; once a robot observes the station clear
+# again (pallet removed at t = 41 s) the order is re-auctioned and delivered.
+[run]
+name = "m5_block_release"
+seed = 2
+duration = 400.0
+port_base = 7750
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+dwell = 2.0
+list = [[0.0, [7, 1], [7, 11]], [30.0, [1, 1], [1, 11]]]
+
+[faults]
+events = [{ t = 1.0, type = "block", node = [7, 1], duration = 40.0 }]

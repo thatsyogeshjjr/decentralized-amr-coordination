@@ -1,0 +1,20 @@
+# v3 FR-14 / preflight P4: temporary peer disconnection.  amr1's link is down in both directions for 10 s
+# (sim time): it must detect its own isolation, hold, reconnect, release stale nodes and reconcile its task; the
+# connected peers declare it lost and act on their own rules.  Uses the overlapping-path task model.
+[run]
+name = "v3_disconnect"
+seed = 3
+duration = 900.0
+port_base = 7700
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+count = 12
+rate = 0.25
+dwell = 2.0
+
+[comms]
+disconnect = [{ robot = 1, t = 40.0, duration = 10.0 }]

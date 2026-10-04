@@ -1,0 +1,38 @@
+# v3 FR-14 communication-impairment campaign (preflight P9): distributed A* + PIBT, N = 3, overlapping-path
+# scenario, seeds 1-10.  Adds jitter, burst loss, stale state and temporary disconnection to the v2 latency x loss
+# sweep (results/campaigns/comms, unchanged).  Delays are simulation time, delivered on 50 ms ticks; jitter keeps
+# per-link FIFO order (TCP).  Burst: Gilbert-Elliott, stationary loss 10 %, mean burst length 5 messages.
+# 7 conditions x 10 seeds = 70 runs.
+[campaign]
+name = "comms_v3"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parallel = 4
+
+[[condition]]
+label = "nominal"
+set = { "fleet.planner" = "pibt" }
+
+[[condition]]
+label = "jitter"
+set = { "fleet.planner" = "pibt", "comms.latency" = 0.05, "comms.jitter" = 0.1 }
+
+[[condition]]
+label = "burst"
+set = { "fleet.planner" = "pibt", "comms.burst" = { p_enter = 0.022222, p_exit = 0.2, loss_bad = 1.0 } }
+
+[[condition]]
+label = "burst_jitter"
+set = { "fleet.planner" = "pibt", "comms.burst" = { p_enter = 0.022222, p_exit = 0.2, loss_bad = 1.0 }, "comms.latency" = 0.05, "comms.jitter" = 0.1 }
+
+[[condition]]
+label = "stale"
+set = { "fleet.planner" = "pibt", "comms.latency" = 0.6, "comms.jitter" = 0.6 }
+
+[[condition]]
+label = "disconnect10"
+set = { "fleet.planner" = "pibt", "comms.disconnect" = [{ robot = 1, t = 40.0, duration = 10.0 }] }
+
+[[condition]]
+label = "disconnect45"
+set = { "fleet.planner" = "pibt", "comms.disconnect" = [{ robot = 1, t = 40.0, duration = 45.0 }] }

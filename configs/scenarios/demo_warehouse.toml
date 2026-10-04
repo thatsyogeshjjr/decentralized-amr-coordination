@@ -1,0 +1,24 @@
+# Pitch / conference demo: real-time (1x) visual run with the dashboard, a mid-run aisle blockage and a robot
+# crash.  Demo mode is for presentation only - experiments use accelerated mode.
+[run]
+name = "demo_warehouse"
+seed = 11
+mode = "demo"
+duration = 900.0
+port_base = 7950
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+count = 16
+rate = 0.08
+dwell = 2.0
+
+[dashboard]
+enabled = true
+port = 8050
+
+[faults]
+events = [{ t = 60.0, type = "block", node = [4, 7], duration = 90.0 }, { t = 150.0, type = "kill", robot = 2 }]

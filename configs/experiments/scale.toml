@@ -1,0 +1,29 @@
+# Experiment matrix: fleet size N in {3, 5, 8} (PR-07) on the 21 x 12 warehouse, 20 orders at 0.3 orders/s,
+# stop-and-wait vs distributed A* + PIBT, 10 seeds each.  Run after the N = 3 campaigns.
+[campaign]
+name = "scale"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parallel = 3
+
+[[condition]]
+label = "n3__stop_wait"
+set = { "fleet.planner" = "stop_wait", "fleet.n_robots" = 3, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n3__pibt"
+set = { "fleet.planner" = "pibt", "fleet.n_robots" = 3, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n5__stop_wait"
+set = { "fleet.planner" = "stop_wait", "fleet.n_robots" = 5, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n5__pibt"
+set = { "fleet.planner" = "pibt", "fleet.n_robots" = 5, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n8__stop_wait"
+set = { "fleet.planner" = "stop_wait", "fleet.n_robots" = 8, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n8__pibt"
+set = { "fleet.planner" = "pibt", "fleet.n_robots" = 8, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }
+[[condition]]
+label = "n8__pibt_learned"
+set = { "fleet.planner" = "pibt", "fleet.learned_priority" = true, "fleet.n_robots" = 8, "world.map" = "configs/maps/warehouse_medium.txt", "tasks.count" = 20, "tasks.rate" = 0.3 }

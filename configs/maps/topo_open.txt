@@ -1,0 +1,10 @@
+; topology "open aisle": open floor between the west pickup and east drop-off stations (no internal racks)
+######C#C####
+#P.........D#
+#...........#
+#...........#
+#P0...1...2D#
+#...........#
+#...........#
+#P.........D#
+###R#####R###

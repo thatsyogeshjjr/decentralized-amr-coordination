@@ -1,0 +1,10 @@
+; topology "four-way intersection": regular grid of single-lane aisles with many 4-way junctions
+######C#C####
+#P.........D#
+#.#.#.#.#.#.#
+#...........#
+#.#.#.#.#.#.#
+#P0...1...2D#
+#.#.#.#.#.#.#
+#P.........D#
+###R#####R###

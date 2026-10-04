@@ -1,0 +1,300 @@
+{
+  "objective": "mean makespan (steps) + 50 * unfinished tasks, graph-level PIBT episodes",
+  "train_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011
+  ],
+  "val_seeds": [
+    5000,
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    5007,
+    5008,
+    5009,
+    5010,
+    5011,
+    5012,
+    5013,
+    5014,
+    5015,
+    5016,
+    5017,
+    5018,
+    5019,
+    5020,
+    5021,
+    5022,
+    5023
+  ],
+  "cem": {
+    "out": "models/priority_mlp.pt",
+    "iters": 40,
+    "pop": 32,
+    "elite": 6,
+    "seed": 7,
+    "train": 12,
+    "val": 24
+  },
+  "history": [
+    {
+      "iter": 0,
+      "best": 198.833,
+      "mean": 201.12,
+      "elite_mean": 199.736
+    },
+    {
+      "iter": 1,
+      "best": 198.917,
+      "mean": 201.018,
+      "elite_mean": 199.861
+    },
+    {
+      "iter": 2,
+      "best": 199.0,
+      "mean": 201.227,
+      "elite_mean": 199.542
+    },
+    {
+      "iter": 3,
+      "best": 199.5,
+      "mean": 201.331,
+      "elite_mean": 199.833
+    },
+    {
+      "iter": 4,
+      "best": 198.833,
+      "mean": 200.802,
+      "elite_mean": 199.403
+    },
+    {
+      "iter": 5,
+      "best": 199.25,
+      "mean": 200.818,
+      "elite_mean": 199.569
+    },
+    {
+      "iter": 6,
+      "best": 198.917,
+      "mean": 200.638,
+      "elite_mean": 199.347
+    },
+    {
+      "iter": 7,
+      "best": 198.917,
+      "mean": 200.344,
+      "elite_mean": 199.264
+    },
+    {
+      "iter": 8,
+      "best": 198.75,
+      "mean": 200.12,
+      "elite_mean": 199.111
+    },
+    {
+      "iter": 9,
+      "best": 198.833,
+      "mean": 199.852,
+      "elite_mean": 199.083
+    },
+    {
+      "iter": 10,
+      "best": 198.417,
+      "mean": 199.995,
+      "elite_mean": 199.056
+    },
+    {
+      "iter": 11,
+      "best": 198.833,
+      "mean": 199.492,
+      "elite_mean": 199.042
+    },
+    {
+      "iter": 12,
+      "best": 198.833,
+      "mean": 199.346,
+      "elite_mean": 198.958
+    },
+    {
+      "iter": 13,
+      "best": 198.833,
+      "mean": 199.289,
+      "elite_mean": 198.861
+    },
+    {
+      "iter": 14,
+      "best": 198.833,
+      "mean": 199.32,
+      "elite_mean": 198.875
+    },
+    {
+      "iter": 15,
+      "best": 198.833,
+      "mean": 199.32,
+      "elite_mean": 198.833
+    },
+    {
+      "iter": 16,
+      "best": 198.833,
+      "mean": 199.406,
+      "elite_mean": 198.847
+    },
+    {
+      "iter": 17,
+      "best": 198.833,
+      "mean": 199.49,
+      "elite_mean": 199.056
+    },
+    {
+      "iter": 18,
+      "best": 198.917,
+      "mean": 199.409,
+      "elite_mean": 199.194
+    },
+    {
+      "iter": 19,
+      "best": 198.833,
+      "mean": 199.383,
+      "elite_mean": 199.056
+    },
+    {
+      "iter": 20,
+      "best": 198.833,
+      "mean": 199.307,
+      "elite_mean": 198.917
+    },
+    {
+      "iter": 21,
+      "best": 198.417,
+      "mean": 199.292,
+      "elite_mean": 198.778
+    },
+    {
+      "iter": 22,
+      "best": 198.833,
+      "mean": 199.924,
+      "elite_mean": 199.069
+    },
+    {
+      "iter": 23,
+      "best": 198.833,
+      "mean": 199.383,
+      "elite_mean": 199.014
+    },
+    {
+      "iter": 24,
+      "best": 198.833,
+      "mean": 199.214,
+      "elite_mean": 198.875
+    },
+    {
+      "iter": 25,
+      "best": 198.833,
+      "mean": 199.326,
+      "elite_mean": 198.847
+    },
+    {
+      "iter": 26,
+      "best": 198.833,
+      "mean": 199.339,
+      "elite_mean": 198.847
+    },
+    {
+      "iter": 27,
+      "best": 198.833,
+      "mean": 199.24,
+      "elite_mean": 198.833
+    },
+    {
+      "iter": 28,
+      "best": 198.417,
+      "mean": 199.273,
+      "elite_mean": 198.792
+    },
+    {
+      "iter": 29,
+      "best": 198.833,
+      "mean": 199.359,
+      "elite_mean": 198.889
+    },
+    {
+      "iter": 30,
+      "best": 198.833,
+      "mean": 199.255,
+      "elite_mean": 198.875
+    },
+    {
+      "iter": 31,
+      "best": 198.833,
+      "mean": 199.172,
+      "elite_mean": 198.833
+    },
+    {
+      "iter": 32,
+      "best": 198.833,
+      "mean": 199.359,
+      "elite_mean": 198.833
+    },
+    {
+      "iter": 33,
+      "best": 198.833,
+      "mean": 199.346,
+      "elite_mean": 198.861
+    },
+    {
+      "iter": 34,
+      "best": 198.833,
+      "mean": 199.169,
+      "elite_mean": 198.833
+    },
+    {
+      "iter": 35,
+      "best": 198.833,
+      "mean": 199.349,
+      "elite_mean": 198.847
+    },
+    {
+      "iter": 36,
+      "best": 198.833,
+      "mean": 199.315,
+      "elite_mean": 198.847
+    },
+    {
+      "iter": 37,
+      "best": 198.833,
+      "mean": 199.396,
+      "elite_mean": 198.889
+    },
+    {
+      "iter": 38,
+      "best": 198.833,
+      "mean": 199.367,
+      "elite_mean": 198.861
+    },
+    {
+      "iter": 39,
+      "best": 198.833,
+      "mean": 199.315,
+      "elite_mean": 198.833
+    }
+  ],
+  "train_best": 198.41666666666666,
+  "baseline_train": 201.16666666666666,
+  "val_learned": 196.83333333333334,
+  "val_baseline": 197.20833333333334,
+  "val_improvement_pct": 0.19,
+  "train_seconds": 531.4
+}

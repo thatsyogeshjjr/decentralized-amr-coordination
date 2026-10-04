@@ -1,0 +1,82 @@
+# v3 Option B ablation (design doc v3 §10.9, App. D, acceptance gate 8; preflight P9), held-out test seeds 1-10,
+# paired by seed.  (A) distributed A* + PIBT + safety with deterministic priority, (B) + handcrafted congestion
+# heuristic, (C) + learned Option B advisor; stop-and-wait and the benchmark-only centralized reference are kept as
+# fleet-level references.  small/open/narrow/fourway: held-out seeds of the training layouts; medium8: held-out layout
+# (warehouse_medium, N = 8).  50 + 90 + 40 = 180 runs.
+[campaign]
+name = "advisor_ablation"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parallel = 4
+
+[[condition]]
+label = "small__stop_wait"
+set = { "fleet.planner" = "stop_wait", "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__central"
+set = { "fleet.planner" = "central", "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__pibt"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__pibt_heur"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "heuristic", "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__pibt_optb"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "learned", "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__pibt"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__pibt_heur"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "heuristic", "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__pibt_optb"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "learned", "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__pibt"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__pibt_heur"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "heuristic", "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__pibt_optb"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "learned", "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__pibt"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__pibt_heur"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "heuristic", "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__pibt_optb"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "learned", "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "medium8__stop_wait"
+set = { "fleet.planner" = "stop_wait", "world.map" = "configs/maps/warehouse_medium.txt", "fleet.n_robots" = 8, "tasks.count" = 20, "tasks.rate" = 0.3 }
+
+[[condition]]
+label = "medium8__pibt"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "world.map" = "configs/maps/warehouse_medium.txt", "fleet.n_robots" = 8, "tasks.count" = 20, "tasks.rate" = 0.3 }
+
+[[condition]]
+label = "medium8__pibt_heur"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "heuristic", "world.map" = "configs/maps/warehouse_medium.txt", "fleet.n_robots" = 8, "tasks.count" = 20, "tasks.rate" = 0.3 }
+
+[[condition]]
+label = "medium8__pibt_optb"
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "learned", "world.map" = "configs/maps/warehouse_medium.txt", "fleet.n_robots" = 8, "tasks.count" = 20, "tasks.rate" = 0.3 }

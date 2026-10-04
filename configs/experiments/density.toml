@@ -1,0 +1,26 @@
+# Experiment matrix: traffic density (order arrival rate low 0.05 / medium 0.15 / high 0.5 orders per second,
+# 12 orders), stop-and-wait vs distributed A* + PIBT, N = 3, 10 seeds each.
+[campaign]
+name = "density"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+parallel = 4
+
+[[condition]]
+label = "low__stop_wait"
+set = { "fleet.planner" = "stop_wait", "tasks.rate" = 0.05 }
+[[condition]]
+label = "low__pibt"
+set = { "fleet.planner" = "pibt", "tasks.rate" = 0.05 }
+[[condition]]
+label = "medium__stop_wait"
+set = { "fleet.planner" = "stop_wait", "tasks.rate" = 0.15 }
+[[condition]]
+label = "medium__pibt"
+set = { "fleet.planner" = "pibt", "tasks.rate" = 0.15 }
+[[condition]]
+label = "high__stop_wait"
+set = { "fleet.planner" = "stop_wait", "tasks.rate" = 0.5 }
+[[condition]]
+label = "high__pibt"
+set = { "fleet.planner" = "pibt", "tasks.rate" = 0.5 }

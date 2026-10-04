@@ -1,0 +1,14 @@
+# Pilot (not part of the reported campaign): sizing and sanity check, 3 seeds.
+[campaign]
+name = "pilot"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1, 2, 3]
+parallel = 3
+
+[[condition]]
+label = "stop_wait"
+set = { "fleet.planner" = "stop_wait" }
+
+[[condition]]
+label = "pibt"
+set = { "fleet.planner" = "pibt" }

@@ -1,0 +1,141 @@
+{
+  "schema_version": "optb-v1",
+  "schema_hash": "fb8406a55b6e",
+  "features": [
+    "occ_next1",
+    "occ_next2",
+    "occ_next3",
+    "route_len",
+    "n_hop1",
+    "n_hop2",
+    "overlap_mine",
+    "overlap_next",
+    "target_next",
+    "wait",
+    "conflicts",
+    "degree",
+    "dist_goal",
+    "carrying",
+    "age_mean",
+    "age_max"
+  ],
+  "seeds": {
+    "train": [
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130
+    ],
+    "val": [
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140
+    ],
+    "test": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "families": {
+    "small": {
+      "world.map": "configs/maps/warehouse_small.txt",
+      "fleet.n_robots": 3,
+      "tasks.count": 12,
+      "tasks.rate": 0.25
+    },
+    "open": {
+      "world.map": "configs/maps/topo_open.txt",
+      "fleet.n_robots": 3,
+      "tasks.count": 12,
+      "tasks.rate": 0.25
+    },
+    "narrow": {
+      "world.map": "configs/maps/topo_narrow.txt",
+      "fleet.n_robots": 3,
+      "tasks.count": 12,
+      "tasks.rate": 0.25
+    },
+    "fourway": {
+      "world.map": "configs/maps/topo_fourway.txt",
+      "fleet.n_robots": 3,
+      "tasks.count": 12,
+      "tasks.rate": 0.25
+    },
+    "medium8": {
+      "world.map": "configs/maps/warehouse_medium.txt",
+      "fleet.n_robots": 8,
+      "tasks.count": 20,
+      "tasks.rate": 0.3
+    }
+  },
+  "test_only_families": [
+    "medium8"
+  ],
+  "scenario": "configs/scenarios/exp_overlap.toml",
+  "generation": {
+    "fleet.planner": "pibt",
+    "fleet.priority_advisor": "none",
+    "fleet.log_features": true,
+    "run.mode": "accelerated"
+  },
+  "expected_runs": {
+    "small__train": 30,
+    "small__val": 10,
+    "small__test": 10,
+    "open__train": 30,
+    "open__val": 10,
+    "open__test": 10,
+    "narrow__train": 30,
+    "narrow__val": 10,
+    "narrow__test": 10,
+    "fourway__train": 30,
+    "fourway__val": 10,
+    "fourway__test": 10,
+    "medium8__test": 10
+  },
+  "expected_total": 210,
+  "code_version": "495bf31a62b5",
+  "created": "2026-10-04T10:37:31",
+  "rule": "test split frozen before model selection; trainer reads dataset_trainval.npz only"
+}

@@ -1,0 +1,6 @@
+; synthetic deadlock topology (FR-07): single-lane corridor with one passing pocket.  Two robots that must swap
+; ends deadlock under plain PIBT (non-biconnected graph); recovery needs deadlock detection + priority escalation.
+#########
+####.####
+#0.....1#
+#########

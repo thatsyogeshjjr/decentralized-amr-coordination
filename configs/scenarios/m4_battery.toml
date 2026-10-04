@@ -1,0 +1,21 @@
+# Battery management: amr0 starts at 30 % and the energy model is accelerated (drain_scale) so it falls below the
+# 25 % threshold mid-run; it must stop bidding, dock at a free charger, charge to 90 % and return to work while the
+# other robots keep delivering.
+[run]
+name = "m4_battery"
+seed = 6
+duration = 600.0
+port_base = 7650
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[battery]
+drain_scale = 60.0
+initial = [0.30, 1.0, 1.0]
+
+[tasks]
+count = 10
+rate = 0.1
+dwell = 2.0

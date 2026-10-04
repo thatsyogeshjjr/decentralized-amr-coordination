@@ -1,0 +1,74 @@
+# v3 Option B data generation (preflight P9): deterministic distributed baseline A (A* + PIBT + safety, no advisor)
+# with decision-time feature logging, visual MuJoCo (accelerated).  Exact matrix: 4 layout families x
+# (30 train + 10 val + 10 test seeds) + held-out layout medium8 x 10 test seeds = 210 runs.  Seeds are disjoint
+# across splits (data/optb/splits.json is frozen before this campaign runs).
+[campaign]
+name = "optb_data"
+scenario = "configs/scenarios/exp_overlap.toml"
+seeds = [1]
+parallel = 4
+
+[[condition]]
+label = "small__train"
+seeds = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__val"
+seeds = [131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "small__test"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/warehouse_small.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__train"
+seeds = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__val"
+seeds = [131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "open__test"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_open.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__train"
+seeds = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__val"
+seeds = [131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "narrow__test"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_narrow.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__train"
+seeds = [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__val"
+seeds = [131, 132, 133, 134, 135, 136, 137, 138, 139, 140]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "fourway__test"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/topo_fourway.txt", "fleet.n_robots" = 3, "tasks.count" = 12, "tasks.rate" = 0.25 }
+
+[[condition]]
+label = "medium8__test"
+seeds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+set = { "fleet.planner" = "pibt", "fleet.priority_advisor" = "none", "fleet.log_features" = true, "world.map" = "configs/maps/warehouse_medium.txt", "fleet.n_robots" = 8, "tasks.count" = 20, "tasks.rate" = 0.3 }

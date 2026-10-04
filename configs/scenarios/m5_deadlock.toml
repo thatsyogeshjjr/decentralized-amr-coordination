@@ -1,0 +1,22 @@
+# FR-07 / PR-06 / acceptance item 4: a known synthetic deadlock.  Two MiR100s swap the ends of a single-lane
+# corridor that has one passing pocket.  Run once with deadlock handling (must recover, < 5 s after detection) and
+# once with it disabled (planning.deadlock_window = 1e9) to show the deadlock is real.
+[run]
+name = "m5_deadlock"
+seed = 1
+duration = 150.0
+port_base = 7800
+
+[world]
+map = "configs/maps/corridor_pocket.txt"
+
+[fleet]
+n_robots = 2
+planner = "pibt"
+
+[tasks]
+dwell = 0.5
+
+[goals]
+amr0 = [[2, 7]]
+amr1 = [[2, 1]]

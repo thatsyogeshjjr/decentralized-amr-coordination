@@ -1,0 +1,19 @@
+# Milestone 3: forced conflicts.  amr0 and amr2 swap ends of the central cross aisle (head-on), amr1 crosses it
+# north-south twice.  Exercises claims, PIBT pushes/evasion, deadlock escalation and the safety shield.
+[run]
+name = "m3_crossing"
+seed = 1
+duration = 240.0
+port_base = 7200
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+dwell = 1.0
+
+[goals]
+amr0 = [[4, 11], [4, 2]]
+amr1 = [[7, 6], [1, 6], [4, 6]]
+amr2 = [[4, 1], [4, 10]]

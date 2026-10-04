@@ -1,0 +1,18 @@
+# FR-08 / acceptance item 3: a pallet is dropped on the central cross aisle while robots are working.  Robots must
+# detect it with their own range rings, broadcast a BlockageEvent, invalidate routes through it and re-plan locally.
+[run]
+name = "m5_blockage"
+seed = 2
+duration = 400.0
+port_base = 7700
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+dwell = 2.0
+list = [[0.0, [4, 1], [4, 11]], [0.0, [1, 1], [1, 11]], [0.0, [7, 1], [7, 11]]]
+
+[faults]
+events = [{ t = 14.0, type = "block", node = [4, 7], duration = 300.0 }]

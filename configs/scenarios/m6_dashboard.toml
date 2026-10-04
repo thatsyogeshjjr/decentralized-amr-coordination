@@ -1,0 +1,23 @@
+# FR-11 / FR-12 / SC-07: the observation-only dashboard runs alongside the fleet and is hard-killed at t = 20 s;
+# robots must keep coordinating and finish every order.
+[run]
+name = "m6_dashboard"
+seed = 4
+duration = 600.0
+port_base = 7900
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+count = 6
+rate = 0.08
+dwell = 2.0
+
+[dashboard]
+enabled = true
+port = 8050
+
+[faults]
+events = [{ t = 20.0, type = "kill_dashboard" }]

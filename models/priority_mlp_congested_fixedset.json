@@ -1,0 +1,193 @@
+{
+  "objective": "mean makespan (steps) + 50 * unfinished tasks, graph-level PIBT episodes",
+  "train_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011
+  ],
+  "val_seeds": [
+    5000,
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    5007,
+    5008,
+    5009,
+    5010,
+    5011,
+    5012,
+    5013,
+    5014,
+    5015,
+    5016,
+    5017,
+    5018,
+    5019,
+    5020,
+    5021,
+    5022,
+    5023,
+    5024,
+    5025,
+    5026,
+    5027,
+    5028,
+    5029,
+    5030,
+    5031,
+    5032,
+    5033,
+    5034,
+    5035
+  ],
+  "cem": {
+    "out": "models/priority_mlp.pt",
+    "iters": 20,
+    "pop": 24,
+    "elite": 5,
+    "seed": 7,
+    "train": 12,
+    "val": 36,
+    "profile": "congested"
+  },
+  "history": [
+    {
+      "iter": 0,
+      "best": 178.583,
+      "mean": 181.066,
+      "elite_mean": 179.133
+    },
+    {
+      "iter": 1,
+      "best": 178.833,
+      "mean": 181.191,
+      "elite_mean": 179.167
+    },
+    {
+      "iter": 2,
+      "best": 178.083,
+      "mean": 180.257,
+      "elite_mean": 178.717
+    },
+    {
+      "iter": 3,
+      "best": 177.583,
+      "mean": 179.806,
+      "elite_mean": 178.317
+    },
+    {
+      "iter": 4,
+      "best": 177.417,
+      "mean": 179.812,
+      "elite_mean": 178.217
+    },
+    {
+      "iter": 5,
+      "best": 177.583,
+      "mean": 180.007,
+      "elite_mean": 178.333
+    },
+    {
+      "iter": 6,
+      "best": 177.583,
+      "mean": 178.854,
+      "elite_mean": 177.8
+    },
+    {
+      "iter": 7,
+      "best": 177.75,
+      "mean": 179.194,
+      "elite_mean": 178.167
+    },
+    {
+      "iter": 8,
+      "best": 177.583,
+      "mean": 178.816,
+      "elite_mean": 177.75
+    },
+    {
+      "iter": 9,
+      "best": 177.583,
+      "mean": 178.708,
+      "elite_mean": 177.783
+    },
+    {
+      "iter": 10,
+      "best": 177.75,
+      "mean": 178.688,
+      "elite_mean": 177.783
+    },
+    {
+      "iter": 11,
+      "best": 177.583,
+      "mean": 178.59,
+      "elite_mean": 177.717
+    },
+    {
+      "iter": 12,
+      "best": 177.5,
+      "mean": 178.823,
+      "elite_mean": 177.667
+    },
+    {
+      "iter": 13,
+      "best": 177.583,
+      "mean": 178.153,
+      "elite_mean": 177.717
+    },
+    {
+      "iter": 14,
+      "best": 177.5,
+      "mean": 178.142,
+      "elite_mean": 177.7
+    },
+    {
+      "iter": 15,
+      "best": 177.5,
+      "mean": 178.427,
+      "elite_mean": 177.7
+    },
+    {
+      "iter": 16,
+      "best": 177.5,
+      "mean": 178.094,
+      "elite_mean": 177.7
+    },
+    {
+      "iter": 17,
+      "best": 177.25,
+      "mean": 177.802,
+      "elite_mean": 177.55
+    },
+    {
+      "iter": 18,
+      "best": 177.5,
+      "mean": 178.115,
+      "elite_mean": 177.5
+    },
+    {
+      "iter": 19,
+      "best": 177.25,
+      "mean": 177.993,
+      "elite_mean": 177.383
+    }
+  ],
+  "train_best": 177.25,
+  "baseline_train": 180.58333333333334,
+  "val_learned": 181.16666666666666,
+  "val_baseline": 180.5,
+  "val_improvement_pct": -0.37,
+  "train_seconds": 417.8
+}

@@ -1,0 +1,19 @@
+# FR-09 / acceptance item: a robot holding a task crashes (process killed, no goodbye).  Peers detect the loss via
+# heartbeat timeout, re-open its task with a new revision, re-auction it and deliver it; the dead robot's body
+# stays on the floor as an obstacle.
+[run]
+name = "m4_robot_loss"
+seed = 5
+duration = 500.0
+port_base = 7600
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+dwell = 2.0
+list = [[0.0, [4, 1], [4, 11]], [0.0, [7, 1], [1, 11]], [0.0, [1, 1], [7, 11]], [20.0, [4, 1], [1, 11]]]
+
+[faults]
+events = [{ t = 12.0, type = "kill", robot = 1 }]

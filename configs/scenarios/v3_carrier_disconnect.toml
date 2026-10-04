@@ -1,0 +1,19 @@
+# v3 preflight addendum A: the robot carrying an order (amr0, picked at 6.1 s) loses its link for 40 s while its peers are idle.  Peers
+# declare it lost and re-auction the order; the winner's pickup finds no load (payload sensor) and releases it; on
+# reconnection the carrier re-asserts ownership and delivers.  Exactly one delivery, no rejected false delivery.
+[run]
+name = "v3_carrier_disconnect"
+seed = 1
+duration = 400.0
+port_base = 7750
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+dwell = 2.0
+list = [[0.0, [4, 1], [4, 11]]]
+
+[comms]
+disconnect = [{ robot = 0, t = 15.0, duration = 40.0 }]

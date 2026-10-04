@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fleet Dashboard</title>
+<style>
+  :root {
+    --bg: #f5f6f8; --panel: #ffffff; --ink: #1d2330; --muted: #667085; --line: #e3e6eb;
+    --rack: #2f4f8f; --wall: #b8bcc4; --aisle: #fbfbfc; --pick: #2fa84f; --drop: #2f6fe0; --charge: #e8a317;
+    --park: #8a8f99; --block: #c0392b; --ok: #1f9d55; --warn: #d97706; --bad: #c0392b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0f1218; --panel: #171b23; --ink: #e6e8ee; --muted: #98a0b0; --line: #2a303c;
+      --rack: #4c6db5; --wall: #3a404c; --aisle: #1c212b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; padding: 14px 16px 6px; }
+  header h1 { font-size: 18px; margin: 0; }
+  header .sub { color: var(--muted); font-size: 13px; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--line); }
+  .badge.live { color: var(--ok); border-color: var(--ok); }
+  .badge.stale { color: var(--bad); border-color: var(--bad); }
+  main { display: grid; grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr); gap: 12px; padding: 8px 16px 16px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; min-width: 0; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 0 0 8px; }
+  canvas { width: 100%; height: auto; display: block; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; margin-bottom: 12px; }
+  .kpi { border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+  .kpi .v { font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .kpi .l { color: var(--muted); font-size: 12px; }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); font-size: 13px; }
+  th { color: var(--muted); font-weight: 500; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .bar { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; width: 70px; display: inline-block; vertical-align: middle; }
+  .bar > i { display: block; height: 100%; background: var(--ok); }
+  .legend { display: flex; flex-wrap: wrap; gap: 10px; color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Decentralized AMR Fleet</h1>
+  <span class="sub" id="sub">connecting…</span>
+  <span class="badge" id="live">waiting</span>
+</header>
+<main>
+  <section class="panel">
+    <h2>Warehouse floor</h2>
+    <canvas id="map" width="1000" height="700" aria-label="Warehouse map with robot positions"></canvas>
+    <div class="legend">
+      <span><span class="dot" style="background:var(--pick)"></span>pickup</span>
+      <span><span class="dot" style="background:var(--drop)"></span>drop-off</span>
+      <span><span class="dot" style="background:var(--charge)"></span>charger</span>
+      <span><span class="dot" style="background:var(--park)"></span>parking</span>
+      <span><span class="dot" style="background:var(--block)"></span>blocked (reported by robots)</span>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Fleet status</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="k-t">–</div><div class="l">sim time (s)</div></div>
+      <div class="kpi"><div class="v" id="k-del">–</div><div class="l">orders delivered</div></div>
+      <div class="kpi"><div class="v" id="k-col">–</div><div class="l">collisions</div></div>
+      <div class="kpi"><div class="v" id="k-min">–</div><div class="l">min robot gap (m)</div></div>
+      <div class="kpi"><div class="v" id="k-net">–</div><div class="l">telemetry rx (kB)</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Robot</th><th>Status</th><th>Task</th><th>Battery</th><th>Priority</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <p class="muted" style="margin-top:10px">Observation only: this page subscribes to robot telemetry and never sends to the fleet.</p>
+  </section>
+</main>
+<script>
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let MAP = null, last = 0;
+const cv = document.getElementById("map"), g = cv.getContext("2d");
+
+function rgb(c, a = 1) { return `rgba(${Math.round(c[0]*255)},${Math.round(c[1]*255)},${Math.round(c[2]*255)},${a})`; }
+
+async function init() {
+  MAP = await (await fetch("/map")).json();
+  const s = 60;
+  cv.width = MAP.W * s; cv.height = MAP.H * s;
+  const es = new EventSource("/events");
+  es.onmessage = e => { last = Date.now(); draw(JSON.parse(e.data)); };
+  setInterval(() => {
+    const live = Date.now() - last < 2000;
+    const b = document.getElementById("live");
+    b.textContent = live ? "live" : "no data"; b.className = "badge " + (live ? "live" : "stale");
+  }, 500);
+}
+
+function cellXY(n) { return [n % MAP.W, Math.floor(n / MAP.W)]; }
+function worldToPx(x, y) { const s = cv.width / MAP.W, c = MAP.cell; return [(x / c + 0.5) * s, (MAP.H - 1 - y / c + 0.5) * s]; }
+
+function draw(st) {
+  const s = cv.width / MAP.W;
+  g.clearRect(0, 0, cv.width, cv.height);
+  const kinds = { "#": null, "P": css("--pick"), "D": css("--drop"), "C": css("--charge"), "R": css("--park") };
+  for (let r = 0; r < MAP.H; r++) for (let c = 0; c < MAP.W; c++) {
+    const ch = MAP.rows[r][c];
+    const border = r === 0 || c === 0 || r === MAP.H - 1 || c === MAP.W - 1;
+    g.fillStyle = ch === "#" ? (border ? css("--wall") : css("--rack")) : css("--aisle");
+    g.fillRect(c * s + 1, r * s + 1, s - 2, s - 2);
+    if (kinds[ch]) { g.fillStyle = kinds[ch]; g.globalAlpha = 0.35; g.fillRect(c * s + 4, r * s + 4, s - 8, s - 8); g.globalAlpha = 1; }
+  }
+  for (const n of st.blockages || []) {
+    const [c, r] = cellXY(n); g.strokeStyle = css("--block"); g.lineWidth = 4;
+    g.beginPath(); g.moveTo(c*s+8, r*s+8); g.lineTo(c*s+s-8, r*s+s-8); g.moveTo(c*s+s-8, r*s+8); g.lineTo(c*s+8, r*s+s-8); g.stroke();
+  }
+  const rows = [];
+  MAP.robots.forEach((rb, i) => {
+    const rs = st.robots[rb.name], it = st.intents[rb.name];
+    const alive = st.world.alive ? st.world.alive[i] : true;
+    const pose = st.world.poses ? st.world.poses[i] : (rs ? rs.pose : null);
+    if (!pose) return;
+    if (it && it.path && it.path.length && alive) {
+      g.strokeStyle = rgb(rb.color, 0.55); g.lineWidth = 5; g.beginPath();
+      let [px, py] = worldToPx(pose[0], pose[1]); g.moveTo(px, py);
+      for (const n of it.path) { const [c, r] = cellXY(n); g.lineTo(c*s + s/2, r*s + s/2); }
+      g.stroke();
+    }
+    if (rs && rs.held && alive) for (const n of rs.held) {
+      const [c, r] = cellXY(n); g.strokeStyle = rgb(rb.color, 0.8); g.lineWidth = 2; g.strokeRect(c*s+3, r*s+3, s-6, s-6);
+    }
+    const [x, y] = worldToPx(pose[0], pose[1]);
+    g.save(); g.translate(x, y); g.rotate(-pose[2]);
+    const L = 0.898 / MAP.cell * s, W = 0.585 / MAP.cell * s;
+    g.fillStyle = alive ? rgb(rb.color) : "#555"; g.fillRect(-L/2 + 0.04*s, -W/2, L, W);
+    g.fillStyle = "#fff"; g.fillRect(L/2 - 0.12*s, -W/4, 0.1*s, W/2);
+    if (rs && rs.carrying) { g.fillStyle = "#b7884f"; g.fillRect(-L/4, -W/4, L/2, W/2); }
+    g.restore();
+    const bat = st.world.battery ? st.world.battery[i] : (rs ? rs.battery : 0);
+    const status = !alive ? "LOST" : rs ? rs.status + (rs.boosted ? " (boost)" : "") : "–";
+    rows.push(`<tr><td><span class="dot" style="background:${rgb(rb.color)}"></span>${rb.name}</td>` +
+      `<td>${status}</td><td>${rs && rs.task_id ? rs.task_id + (rs.carrying ? " ▣" : "") : "–"}</td>` +
+      `<td><span class="bar"><i style="width:${Math.round(100*bat)}%"></i></span> ${Math.round(100*bat)}%</td>` +
+      `<td>${rs ? (rs.prio > 1e5 ? "boost" : rs.prio < -1e8 ? "idle" : "age " + Math.max(0, (st.world.t || 0) + rs.prio).toFixed(0) + " s") : "–"}</td></tr>`);
+  });
+  document.getElementById("rows").innerHTML = rows.join("");
+  const w = st.world, tk = w.tasks || {}, m = w.metrics || {};
+  document.getElementById("k-t").textContent = w.t != null ? w.t.toFixed(1) : "–";
+  document.getElementById("k-del").textContent = tk.total ? `${tk.delivered}/${tk.total}` : "–";
+  document.getElementById("k-col").textContent = m.collisions != null ? m.collisions : "–";
+  document.getElementById("k-min").textContent = m.min_pair_dist != null ? m.min_pair_dist.toFixed(2) : "–";
+  document.getElementById("k-net").textContent = (st.rx_bytes / 1024).toFixed(0);
+  document.getElementById("sub").textContent = `planner ${st.planner}${st.learned ? " + learned priority" : ""} · ${st.mode} mode`;
+}
+init();
+</script>
+</body>
+</html>

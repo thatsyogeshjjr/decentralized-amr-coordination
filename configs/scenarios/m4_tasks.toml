@@ -1,0 +1,15 @@
+# Milestone 4: dynamic pickup -> drop-off orders allocated peer-to-peer (3 robots, 12 orders, Poisson arrivals).
+[run]
+name = "m4_tasks"
+seed = 3
+duration = 600.0
+port_base = 7500
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[tasks]
+count = 12
+rate = 0.15
+dwell = 2.0

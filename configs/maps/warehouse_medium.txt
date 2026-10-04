@@ -1,0 +1,14 @@
+; 21 x 12 warehouse for the fleet-size sweep (N = 5, 8): 4 cross aisles, 5 vertical aisles, 4 pickup (P) west,
+; 4 drop (D) east, 3 chargers (C) north, 4 parking alcoves (R) south.  Digits 0-7 = robot starts.
+####C###C###C########
+#P.................D#
+#.##.###.###.###.##.#
+#.##.###.###.###.##.#
+#P0...1...2...3....D#
+#.##.###.###.###.##.#
+#.##.###.###.###.##.#
+#P.4...5...6...7...D#
+#.##.###.###.###.##.#
+#.##.###.###.###.##.#
+#P.................D#
+####R###R###R###R####

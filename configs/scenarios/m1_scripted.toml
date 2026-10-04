@@ -1,0 +1,16 @@
+# Milestone 1: three MiR100s drive fixed, mutually disjoint loops (motion/model validation only).
+[run]
+name = "m1_scripted"
+seed = 1
+duration = 150.0
+port_base = 7100
+
+[fleet]
+n_robots = 3
+planner = "scripted"
+
+# [row, col] cells; consecutive waypoints are joined by straight aisle segments
+[waypoints]
+amr0 = [[4, 1], [1, 1], [1, 4], [4, 4], [4, 2]]
+amr1 = [[4, 8], [1, 8], [1, 6], [1, 8], [4, 8], [4, 6]]
+amr2 = [[4, 11], [7, 11], [7, 5], [7, 11], [4, 11], [4, 10]]

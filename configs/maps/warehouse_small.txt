@@ -1,0 +1,11 @@
+; 13 x 9 warehouse: two rack blocks per side, three cross aisles, pickup (P) west, drop (D) east,
+; chargers (C) in alcoves on the north wall, rest/parking alcoves (R) on the south wall.  Digits = robot starts.
+######C#C####
+#P.........D#
+#.##.###.##.#
+#.##.###.##.#
+#P0...1...2D#
+#.##.###.##.#
+#.##.###.##.#
+#P.........D#
+###R#####R###

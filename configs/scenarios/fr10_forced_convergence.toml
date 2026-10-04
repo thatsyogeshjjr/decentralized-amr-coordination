@@ -1,0 +1,20 @@
+# FR-10 safety acceptance: coordination is deliberately disabled (claims bypassed) and amr0/amr2 are sent head-on
+# through the same cells as amr1.  Only the deterministic safety shield (range ring + peer positions) prevents contact.
+[run]
+name = "fr10_forced_convergence"
+seed = 1
+duration = 60.0
+port_base = 7400
+stop_when_done = false
+
+[fleet]
+n_robots = 3
+planner = "pibt"
+
+[faults]
+bypass_claims = true
+
+[goals]
+amr0 = [[4, 9]]
+amr1 = [[4, 3]]
+amr2 = [[4, 5]]

@@ -1,0 +1,109 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Simulation results
+results/*
+!results/.gitkeep
+
+# Temporary files
+tmp/
+temp/
+*.log
+*.mjlog
+
+# Generated / raw datasets
+docs/
+data/raw/
+data/interim/
+data/generated/
+data/cache/
+
+# Large datasets
+*.parquet
+*.h5
+*.hdf5
+*.npz
+
+# ML checkpoints / weights
+models/checkpoints/
+models/weights/
+models/*.pt
+models/*.pth
+models/*.ckpt
+
+# Experiment tracking
+wandb/
+mlruns/
+runs/
+
+# Generated video / renders
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# Profiling
+*.prof
+*.pstats
+
+# Archives
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+
+# Project-local
+.local/
+*.local
+*.bak
+*.backup
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+$RECYCLE.BIN/
+*.lnk
+.nfs*
+
+# Keep placeholder files
+!.gitkeep

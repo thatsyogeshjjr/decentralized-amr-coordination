@@ -1,0 +1,276 @@
+{
+  "objective": "mean makespan (steps) + 50 * unfinished tasks, graph-level PIBT episodes",
+  "train_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020,
+    1021,
+    1022,
+    1023,
+    1024,
+    1025,
+    1026,
+    1027,
+    1028,
+    1029,
+    1030,
+    1031,
+    1032,
+    1033,
+    1034,
+    1035,
+    1036,
+    1037,
+    1038,
+    1039,
+    1040,
+    1041,
+    1042,
+    1043,
+    1044,
+    1045,
+    1046,
+    1047,
+    1048,
+    1049,
+    1050,
+    1051,
+    1052,
+    1053,
+    1054,
+    1055,
+    1056,
+    1057,
+    1058,
+    1059
+  ],
+  "val_seeds": [
+    5000,
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    5007,
+    5008,
+    5009,
+    5010,
+    5011,
+    5012,
+    5013,
+    5014,
+    5015,
+    5016,
+    5017,
+    5018,
+    5019,
+    5020,
+    5021,
+    5022,
+    5023,
+    5024,
+    5025,
+    5026,
+    5027,
+    5028,
+    5029,
+    5030,
+    5031,
+    5032,
+    5033,
+    5034,
+    5035
+  ],
+  "cem": {
+    "out": "models/priority_mlp.pt",
+    "iters": 20,
+    "pop": 20,
+    "elite": 4,
+    "seed": 7,
+    "train": 60,
+    "val": 36,
+    "profile": "congested",
+    "batch": 16,
+    "prior": 40.0,
+    "select": 24
+  },
+  "history": [
+    {
+      "iter": 0,
+      "best": 179.75,
+      "mean": 180.916,
+      "elite_mean": 180.047,
+      "batch_baseline": 185.062
+    },
+    {
+      "iter": 1,
+      "best": 152.812,
+      "mean": 154.088,
+      "elite_mean": 153.188,
+      "batch_baseline": 160.875
+    },
+    {
+      "iter": 2,
+      "best": 179.438,
+      "mean": 180.609,
+      "elite_mean": 179.844,
+      "batch_baseline": 185.938
+    },
+    {
+      "iter": 3,
+      "best": 181.812,
+      "mean": 182.431,
+      "elite_mean": 182.094,
+      "batch_baseline": 186.562
+    },
+    {
+      "iter": 4,
+      "best": 165.812,
+      "mean": 167.356,
+      "elite_mean": 166.422,
+      "batch_baseline": 173.062
+    },
+    {
+      "iter": 5,
+      "best": 181.812,
+      "mean": 183.0,
+      "elite_mean": 182.438,
+      "batch_baseline": 188.312
+    },
+    {
+      "iter": 6,
+      "best": 182.375,
+      "mean": 183.15,
+      "elite_mean": 182.484,
+      "batch_baseline": 187.625
+    },
+    {
+      "iter": 7,
+      "best": 171.438,
+      "mean": 172.306,
+      "elite_mean": 171.562,
+      "batch_baseline": 178.938
+    },
+    {
+      "iter": 8,
+      "best": 173.375,
+      "mean": 174.069,
+      "elite_mean": 173.672,
+      "batch_baseline": 180.312
+    },
+    {
+      "iter": 9,
+      "best": 179.625,
+      "mean": 180.116,
+      "elite_mean": 179.703,
+      "batch_baseline": 183.438
+    },
+    {
+      "iter": 10,
+      "best": 177.812,
+      "mean": 178.472,
+      "elite_mean": 178.016,
+      "batch_baseline": 183.438
+    },
+    {
+      "iter": 11,
+      "best": 170.625,
+      "mean": 171.125,
+      "elite_mean": 170.703,
+      "batch_baseline": 176.75
+    },
+    {
+      "iter": 12,
+      "best": 177.875,
+      "mean": 178.284,
+      "elite_mean": 178.094,
+      "batch_baseline": 186.375
+    },
+    {
+      "iter": 13,
+      "best": 175.75,
+      "mean": 176.613,
+      "elite_mean": 175.766,
+      "batch_baseline": 183.062
+    },
+    {
+      "iter": 14,
+      "best": 187.562,
+      "mean": 188.231,
+      "elite_mean": 187.844,
+      "batch_baseline": 193.062
+    },
+    {
+      "iter": 15,
+      "best": 196.438,
+      "mean": 197.012,
+      "elite_mean": 196.484,
+      "batch_baseline": 204.938
+    },
+    {
+      "iter": 16,
+      "best": 174.812,
+      "mean": 175.697,
+      "elite_mean": 174.953,
+      "batch_baseline": 179.75
+    },
+    {
+      "iter": 17,
+      "best": 196.812,
+      "mean": 197.609,
+      "elite_mean": 197.016,
+      "batch_baseline": 199.938
+    },
+    {
+      "iter": 18,
+      "best": 166.5,
+      "mean": 166.969,
+      "elite_mean": 166.578,
+      "batch_baseline": 171.938
+    },
+    {
+      "iter": 19,
+      "best": 193.75,
+      "mean": 194.325,
+      "elite_mean": 193.859,
+      "batch_baseline": 195.562
+    }
+  ],
+  "train_best": 152.8125,
+  "baseline_train": 184.15,
+  "val_learned": 177.63888888888889,
+  "val_baseline": 180.5,
+  "val_improvement_pct": 1.59,
+  "prior": {
+    "target": "-40.0 * x0 (normalized distance to goal)",
+    "samples": 20000
+  },
+  "selection": {
+    "scores": {
+      "cem_mean": 177.66666666666666,
+      "prior_fit": 178.16666666666666
+    },
+    "baseline": 183.66666666666666,
+    "chosen": "cem_mean"
+  },
+  "train_seconds": 755.3
+}
